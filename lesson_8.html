@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this,笔试题</title>
+    <style>
+       #box1{
+        background-color: aquamarine;
+        height: 300px;
+        width: 400px;
+        text-align:center;
+        line-height:300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box1"> 
+        将一行文本，垂直水平和垂直居中
+    </div>    
+    <!-- 
+        parseInt(3,8)   3 以8进制为基底转换为十进制
+        parseInt(3,2)   NaN
+        parseInt(3,0)   3   
+     -->
+     <!-- 
+         typeof 返回 
+         Number String Object Boolean Undefined Function
+      -->
+      <!-- 
+          JavaScript 中 call和apply 方法作用,区别
+          改变this指向，区别：传参列表不一样，apply 传数组
+       -->
+       <script>
+           function b(x,y,a){
+               arguments[2]=10;
+               document.write(a);   //10
+            //    a=10;
+            //    alert(arguments[2]);  10
+           }
+           b(1,2,3);
+       </script>
+       <script>
+           var f=(
+                   function f(){
+                       return "1";
+                   },   //var a=(1,2) 返回2
+                   function g(){
+                       return 2;
+                   }
+           )();
+           typeof f; // number
+       </script>
+       <script>
+           var x=1;
+           if(function ha(){}){  
+               //(function) function 成立即执行函数 undefined
+               x+=typeof ha;
+           }
+           console.log(x); //
+       </script>
+       <!-- 
+           undefined ==null  true
+           isNaN("100")  false
+           NaN ==NaN  false
+           {} =={}  false
+           判断一个变量是否为NaN
+           <script>
+               function myIsNaN(num){
+                   var ret=Number(num);
+                   ret +="";
+                   if(ret=="NaN"){
+                       return true;
+                   }else{
+                       return false;
+                   }
+               }
+           </script>
+        -->
+        <!-- 
+            this
+            函数预编译过程中 this指向 window
+            全局作用域里 this ———>>   window
+            call/apply  可以改变函数中this 指向
+            obj.func(); func()里面的this指向obj
+         -->
+         <script>
+             var name="deng";
+             var obj={
+                 say:function(){
+                    console.info(this.name)
+                 },
+                 name:"sunny"
+             }
+             var sayName=obj.say;
+             sayName();  // deng
+             obj.say();  // sunny
+             var obj1={
+                 name:"tom",
+                 say:function(fun){
+                     fun();
+                 }
+             }
+             obj1.say(obj.say); //deng
+             obj1.say=obj.say;
+             obj1.say();     //tom
+         </script>
+         <!-- 
+             arguments
+             arguments.callee   指向函数自身引用
+             func.caller    函数在哪环境执行
+          -->
+          <script>
+              var num=(function(n){
+                if(n==1){
+                    return 1;
+                }
+                return n*arguments.callee(n-1);
+              }(10))
+              function test(){
+                  demo();
+              }
+              function demo(){
+                  console.log(demo.caller);
+              }
+              test();
+          </script>
+          <!-- 
+
+           -->
+          <script>
+              var foo=123;
+              function print(){
+                  this.foo=234;
+                  console.log(foo);//123
+              }
+              new print();
+          </script>
+          <script>
+              var user='haha';
+              function change(){
+                  user='lala';
+                  return;
+                  function user(){
+                      console.log("user")
+                  }
+              }
+              change();
+              console.log(user);
+          </script>
+          <script>
+              var a=5;
+              function test1(){
+                  a=0;
+                  console.log(a)  //0
+                  console.log(this.a); //undefined
+                  var a;
+                  console.log(a);  //0 
+              }
+              new test1();
+          </script>
+          <script>
+            
+          </script>
+</body>
+</html>

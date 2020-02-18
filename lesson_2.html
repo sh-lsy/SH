@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数</title>
+</head>
+<body>
+    <script>
+    // 函数声明
+    function test(){
+        document.write('a');
+    }
+
+    // 命名函数表达式
+    var shumiao=function test(){
+        document.write('s');
+    }
+    shumiao();
+    // 匿名函数表达式 ---函数表达式
+    var demo=function (){
+        document.write('a');
+    }
+    demo();
+    </script>
+    <!-- 所选动物叫声函数 -->
+    <script>
+    function scream(animal){
+        switch(animal){
+            case "dog":
+                document.write('wangwang!');
+                return;
+            case "cat":
+                document.write('miao');
+        }
+    }
+    </script>
+    <!-- 输入数字 返回倒叙 并大写 -->
+    <script>
+    function reverse(){
+        var num=window.prompt('输入数字:')
+        var str="";
+        for(var i=num.length-1;i>=0;i--){
+            str +=transfer(num[i]); //num[i]=num.charAt(i)
+        }
+        document.write(str);
+    }
+    function transfer(target){
+        switch(target){
+            case "1":
+                return "壹";
+            case "2":
+                return "贰";
+            case "3":
+                return "叁";
+            case "4":
+                return "肆";
+            case "5":
+                return "伍";
+            case "6":
+                return "陆";
+            case "7":
+                return "柒";
+            case "8":
+                return "捌";
+            case "9":
+                return "玖";
+        }
+    }
+    </script>
+    <!-- 求n的阶层 递归 来算-->
+    <script>
+    function jc(n){
+        if(n==1||n==0){
+            return 1;
+        }
+        return n*jc(n-1);
+    }
+    </script>
+    <!-- 求斐波那契数列  递归 -->
+    <script>
+    function fb(n){
+        if(n==1||n==2){
+            return 1;
+        }
+        return fb(n-1)+fb(n-2);
+    }
+    </script>
+</body>
+</html>

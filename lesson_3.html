@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包，预编译</title>
+</head>
+<body>
+    <script>
+    var a=123;
+    // 相当于
+    // window {
+    //     a:123
+    // }   
+    </script>
+    <script>
+       
+    function fn(a){
+        console.log(d); //f d(){}
+        console.log(a); //f a(){}
+        var a=123;
+        console.log(a); // 123
+        function a(){}
+        console.log(a);  //123
+        var b=function (){}
+        console.log(b); // f (){}
+        function d(){}
+    }
+    fn(1);
+    </script>
+    <script>
+    console.log(test);
+    function test(){
+        console.log(test);
+        var test=234;
+        console.log(test);
+        function test(){}
+        console.log(test);
+    }
+    test(1);
+    var test=123;
+    </script>
+    <script>
+    //1.
+    function bar(){
+        return foo;
+        foo=10;
+        function foo(){
+        }
+        var foo=11;
+    }
+    console.log(bar());
+    //2.
+    // console.log(bar());
+    // function bar(){
+     
+    //     foo=10;
+    //     function foo(){
+    //     }
+    //     var foo=11;
+    //     return foo;
+    // }
+    </script>
+    <script>
+    if(typeof(a)&&-true+(+undefined)+""){
+        document.write("基础扎实");
+    }
+    </script>
+    <script>
+    var x=1;
+    if(function f(){}){
+        x+=typeof f;
+    }
+    document.write(x);
+    (window.foo||(window.foo='foo'));
+    console.log(typeof window.foo);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承模式，命名空间，对象枚举</title>
+</head>
+<body>
+    <!-- 
+        继承
+        extend
+        inherit
+        function inherit(Target,Origin){
+            Target.prototype=Origin.prototype;
+        }
+     -->
+    <!-- <script>
+        Father.prototype.lastName='deng';
+        function Father(){
+
+        }
+        function Son(){
+
+        }
+        function inherit (Target,Origin){
+            Target.prototype=Origin.prototype;
+        }
+        inherit(Son,Father);
+        var son=new Son();
+
+    </script> -->
+    <!-- 
+        圣杯模式
+     -->
+    <script>
+        Father.prototype.lastName='deng';
+        function Father(){
+        }
+        function Son(){
+        }
+        // var inherit=(function(){
+        //     var F=function(){};
+        //     return function (Target,Origin){
+        //     F.prototype=Origin.prototype;
+        //     Target.prototype=new F();
+        //     Target.prototype.constuctor=Target;
+        //     Target.prototype.uber=Origin.prototype;//查找Target真正继承的谁
+        // }
+        // }());
+        function inherit (Target,Origin){
+            function F(){};
+            F.prototype=Origin.prototype;
+            Target.prototype=new F();
+            Target.prototype.constuctor=Target;
+            Target.prototype.uber=Origin.prototype;//查找Target真正继承的谁
+        }
+        inherit(Son,Father);
+        var son=new Son();
+        var father=new Father();
+    </script>
+    <!-- 
+        命名空间
+        管理变量，防止污染全局，适用于模块化开发
+        不常用了。。。。
+        现在常用闭包
+     -->
+     <script>
+         var ad={
+             color:function (){
+                 console.log('red');
+                 return this;
+             },
+             size: function(){
+                 console.log('adSize....');
+                 return this;
+             },
+             txt:function (){
+                 console.log('楷书。。。');
+                 return this;
+             }
+         }
+         ad.size().txt().color();
+     </script>
+     <!-- 
+         this.name=this['name']
+      -->
+     <script>
+         var english={
+             en1:{name:"a"},
+             en2:{name:"b"},
+             en3:{name:'c'},
+             en4:{name:"d"},
+             sayen: function(num){
+                 return this['en'+num];
+             }
+         }
+     </script>
+     <!-- 
+        遍历  枚举
+        对象枚举 
+        for( var prop in obj){} 会拿原型__proto__上的值
+        hasOwnProperty  判断是否为原型
+        in  'height' in obj    返回true
+        instanceof 
+        A instanceof B  判断A对象是否为B构造函数构造出来
+        ※ 看A对象的原型链上有没有B的原型
+      -->
+      <script>
+          var obj={
+              name:"sunny",
+              age:23,
+              sex:"female",
+              height:170,
+              weight:60,
+              __proto__ :{
+                  lastName: 'demo'
+              }
+          }
+          for (var prop in obj){
+            //   if(obj.hasOwnProperty(prop)){
+              console.log(obj[prop]);
+            //   }
+          }
+          function Person(){
+          }
+        
+          var person =new Person();
+          if(person instanceof Person){
+              console.log("aa");
+          }
+      </script>
+      <!-- 
+        区分数组与对象
+        var obj={}
+        1.constructor
+         [].constructor  obj.constructor
+        2. instanceof 
+        [] instanceof Array    true
+        obj instaceof Array    false
+        3. toString
+        Object.prototype.toString.call([]);  返回 Array
+        Object.prototype.toString.call({});  返回 Object
+       -->
+</body>
+</html>

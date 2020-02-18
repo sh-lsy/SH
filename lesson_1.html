@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>typeof,类型转换</title>
+</head>
+<body>
+  <script>
+    //   typeof  
+    // 6种数据类型: number   string  boolean  object undefined  function
+  var num=1;
+   document.write(typeof(num)+" ");
+   var num_1="haha";
+   document.write(typeof(num_1)+" ");
+   var num_2=true;+
+   document.write(typeof(num_2)+" ");
+   var num3={};// null  数组[] 也是对象
+   document.write(typeof(num3)+" ");
+   var num4=undefined;
+   document.write(typeof(num4)+" ");
+   var num5=function (){};
+   document.write(typeof num5);
+  </script>  
+  <br/>
+  2进制转成10进制 在转成16进制<br>
+  parseInt        &nbsp; toString<br>
+
+  <script>
+  var num=10000;
+  var test=parseInt(num,2);
+  document.write(test.toString(16));
+  </script>
+</body>
+</html>

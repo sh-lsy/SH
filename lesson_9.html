@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments,克隆，三目运算符，数组，类数组</title>
+
+</head>
+<body>
+    <!-- 
+        深度克隆
+     -->
+    <script>
+        var obj={
+            name:"abc",
+            age:123,
+            card:['visa','master'],
+            wife:{
+                name:"aaa",
+                son:{
+                    name:"bbb"
+                }
+            }
+        }
+        //  遍历对象  for(var prop in obj)
+        //  1.判断是不是原始值     typeof()  
+        //  2.判断是数组还是对象  instanceof toString constructor
+        //  3.建立相应的数组或对象
+        //  递归
+        var obj1={};
+        function deepClone(origin,target){
+            var target=target || {},
+                obStr=Object.prototype.toString,
+                arr="[object Array]";
+            for(var prop in origin){
+                if(origin.hasOwnProperty(prop)){  //判断是否为原型__proto__上的值
+                if(origin[prop]!=="null"&&typeof(origin[prop])=="object"){
+                    // if(obStr.call(origin[prop])==arr){
+                    //     target[prop]=[];
+                    // }else{
+                    //     target[prop]={};
+                    // }
+                    //三目运算符 简化
+                    target[prop]=obStr.call(origin[prop])==arr?[]:{};
+                    deepClone(origin[prop],target[prop]);
+                } else{
+                target[prop]=origin[prop];
+                     }
+             }
+         }
+               return target;
+        }
+    </script>
+    
+    <!-- 
+        三目运算符
+        条件判断 ? 是 : 否 并且会返回值
+        var num = 1<0 ? 2+2 :1+1;
+     -->
+     <!-- 
+         数组
+         es3.0  最基础的         es5.0  es6.0
+        
+         改变原数组 方法      
+        push ，pop, shift,unshift,sort,reverse
+        splice
+        不改变原数组
+        concat ,join ——>split,toStirng ,slice
+      -->
+      <script>
+        var arr=[1,2,3];
+        //   定义数组方法
+        //   var arr=[];
+        //   var arr=new Array();
+
+        // push 在数组最后一位添加数据  
+        //  arr.push("a",1);  // 为arr=[1,"a",1]
+        //模拟push方法
+        // Array.prototype.push1=function(){
+        //     for (var i=0;i<arguments.length;i++){
+        //         this[this.length]=arguments[i];
+        //     }
+        //     return this.length;
+        // }
+
+        // pop   剪切数组最后一位
+        //  arr.pop();  //arr=[1,2]
+
+        //   shift  剪切数组第一位
+        //   arr.shift(); arr=[2,3]
+
+        //  unshift  在数组第一位前添加数据  
+        //  arr.unshift(1,2); arr=[1,2,1,2,3]
+        /* 
+          reverse
+        */
+      /**
+       * @description: 
+       * @param {type} 
+       * @return: 
+       */ 
+      </script>
+</body>
+</html>

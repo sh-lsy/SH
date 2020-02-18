@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域，立即执行函数，闭包</title>
+</head>
+<body>
+    <script>
+
+        function  a(){
+            
+            function b(){
+                aa++;
+                console.log(aa);
+            }
+            var aa=123;
+            return b;
+        }
+        var demo=a(); //demo接受了return b;
+        demo();//124
+        demo();//125
+        
+    </script>
+    <!-- 立即执行函数 -->
+    <script>
+        //立即执行函数
+        //针对初始化功能函数
+        //  结构 ：(function(a,b,c){}(1,2,3)) w3c
+        //        (function (){})();
+        //只有表达式才能被执行符号执行
+        (function add(){
+            var a=123;
+            var b=234;
+            console.log(a+b);
+        }())
+        
+    </script>
+    <!-- 闭包 -->
+    <script>
+        function test(){
+            var arr=[];
+            for(var i=0;i<10;i++){
+               // 解决办法 立即执行函数
+                // (function (j){
+                //    arr[j]=function(){
+                //    document.write(j+" ");
+                // }
+                // }(i));
+                arr[i]=function(){
+                    document.write(i+" ");
+                }
+            }
+            return arr;
+        }
+        var myArr=test();
+        for(var j=0;j<10;j++){
+            myArr[j](); //执行这时才document.write
+        }
+    </script>
+</body>
+</html>

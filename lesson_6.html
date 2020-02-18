@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型，原型链，call/apply</title>
+</head>
+<body>
+    <!-- 求字符串的字节长度 -->
+    <script>
+        // 1.当前字符位的Unicode>255,那么该字符的字节长度为2
+        // 2.                   <=255,则为1;
+        
+        function bytesLength(str){
+            var count=str.length;
+           for(var i=0;i<str.length;i++){
+              if(str.charCodeAt(i)>255){
+              count++;
+              }
+              
+           }
+          return count;
+        }
+        
+    </script>
+    <!-- 原型 -->
+    <!-- 利用原型特点和概念 提取共有属性 -->
+    <script>
+        //person.prototype --原型
+        //person.prototype={} 是祖先
+        Person.prototype.lastName ="shu";
+        Person.prototype.say=function(){
+            console.log('hehe!');
+        }
+        function Person(){
+            // this.LastName="liu"; 可修改prototype
+        }
+        var person=new Person();
+        var person1=new Person();
+
+    </script>
+    <!-- 
+        document.write会调用 toString方法
+        JavaScript 可正常计算的范围  小数点 前16位， 后16位
+     -->
+     <!-- 
+        call   apply
+        call 需要把实参按照形参的个数传进去
+        apply 需要穿一个arguments
+      -->
+      <script>
+          function Person(name,age,sex){
+              this.name=name;
+              this.age=age;
+              this.sex=sex;
+          }
+          function Student(name,age,sex,tel,grade){
+              //var this={name:"",age:"",sex=""}
+              Person.call(this,name,age,sex); //call
+        //    Person.apply(this,[name,age,sex]); //apply
+              this.tel=tel;
+              this.grade=grade;
+          }
+          var student=new Student('sunny',123,'male',139,2020);
+      </script>
+</body>
+</html>
