@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>set</title>
+</head>
+<body>
+  <script>
+    /**
+     *  集合
+     *  常见api  
+     *      size
+     *      add()
+     *      delete()
+     *      has()
+     *      clear()  清空
+     */ 
+    let s = new Set()
+    let s1 = new Set(['aaa','bbb','ccc','ddd','aaa'])
+    console.log('test', s, typeof s)
+    console.log('s1',s1)
+    s1.add('fff')
+    s1.delete('aaa')
+    console.log('test', s1)
+    // s1.clear()
+    console.log('test', s1.size)
+    console.log(s1.has('bbb'))
+
+    for(let v of s1) {
+      console.log('test', v)
+    }
+
+    /**
+     *  常见实践
+     */ 
+    //  数组去重
+    let arr = [1,2,3,4,5,3,2,1,6,5]
+    let res = [...new Set(arr)]
+    console.log('数组去重res', res)
+    //  交集
+    let arr2 = [2,3,5,8,3,5,9]
+    let set2 = new Set(arr2)
+    let res2 = [...new Set(arr)].filter(item => set2.has(item))
+    console.log('交集',res2)
+    //  并集
+    let union = [...new Set([...arr,...arr2])]
+    console.log('并集',union)
+    // 差集
+    // arr 在arr2的差集
+    let diff = [...new Set(arr)].filter(item => !set2.has(item))
+    console.log('差集',diff)
+  </script>
+</body>
+</html>
