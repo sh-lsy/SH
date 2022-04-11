@@ -184,5 +184,74 @@ const point:Point = {
 }
 ```
 
+### 类型断言as
+
+有时候TypeScript无法获取具体的类型信息，这个我们需要使用类型断言
+
+```typescript
+const el = document.getElementById("why") as HTMLImageElement
+el.src = "url地址"
+```
+
+### 非空类型断言!
+
+非空断言使用的是 ! ，表示可以确定某个标识符是有值的，跳过ts在**编译阶段**对它的检测 
+
+### 可选链的使用?.
+
+- 是ES11（ES2020）中增加的特性
+  - 可选链使用可选链操作符 ?.
+  - 它的作用是当对象的属性不存在时，会短路，直接返回undefined，如果存在，那么才会继续执行
+
+### ??和!!的作用
+
+- !!操作符
+  - 将一个其他类型转换成boolean类型
+  - 类似于Boolean(变量)的方式
+- ??操作符
+  - ES11增加的新特性
+  - 空值合并操作符（??）是一个逻辑操作符，当操作符的左侧是 null 或者 undefined 时，返回其右侧操作数， 否则返回左侧操作数
+
+### 字面量类型
+
+```typescript
+type Dir = "left" | "right" | "top" | "bottom"
+let movedir: Dir = "left"
+movedir = "top"
+```
+
+### 类型缩小
+
+什么是类型缩小呢？
+
+- 类型缩小的英文是 Type Narrowing
+- 我们可以通过类似于 typeof padding === "number" 的判断语句，来改变TypeScript的执行路径
+- 在给定的执行路径中，我们可以缩小比声明时更小的类型，这个过程称之为缩小
+- 而我们编写的 typeof padding === "number 可以称之为 类型保护（type guards）
+
+常见的类型保护有如下几种
+
+- typeof
+- 平等缩小（比如===、!==)
+- instanceof
+- in
+
+### 剩余参数
+
+剩余参数语法允许我们将一个不定数量的参数放到一个数组中
+
+```typescript
+function sum(initalNum: number, ...nums: number[]) {
+  let total = initalNum
+  for (const num of nums) {
+    total += num
+  }
+  return total
+}
+
+console.log(sum(20, 30))
+console.log(sum(20, 30, 40))
+```
+
 
 
