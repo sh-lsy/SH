@@ -284,3 +284,33 @@ console.log(sum(20, 30, 40))
 - private 修饰的是仅在同一类中可见、私有的属性或方法
 - protected 修饰的是仅在类自身及子类中可见、受保护的属性或方法
 - public是默认的修饰符，也是可以直接访问的
+
+#### readonly（只读属性）
+
+有一个属性我们不希望外界可以任意的修改，只希望确定值后直接使用，那么可以使用readonly
+
+#### getters/setters
+
+一些私有属性我们是不能直接访问的，或者某些属性我们想要监听它的获取(getter)和设置(setter)的过程
+
+(一般私有属性用_)
+
+```js
+class Person {
+  private _name: string;
+  constructor(name: string) {
+    this._name = name;
+  }
+
+  // 访问器setter/getter
+  // setter
+  set name(newName) {
+    this._name = newName;
+  }
+  // getter
+  get name() {
+    return this._name;
+  }
+}
+```
+
